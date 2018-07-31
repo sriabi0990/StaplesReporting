@@ -29,10 +29,13 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/weeklyreport/templates/report.html">Process XML <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/weeklyreport/templates/ProcessXML.html">Process XML</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">Generate Report</a>
+                <a class="nav-link" href="#">Generate Report <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/weeklyreport/templates/BGP.html">BGP Report</a>
             </li>
         </ul>
     </div>
@@ -95,7 +98,9 @@
             </div>
 </div>
             <div id="downloadFile" ng-show="downloadfileshow">
-
+                <div class='files' id='downloadlink'>
+                    <a ng-href="http://localhost:8099/download/{{data.model}}">Download File</a>
+                </div>
             </div>
         </form>
     </div>

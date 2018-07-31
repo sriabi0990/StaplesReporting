@@ -16,10 +16,16 @@
     <link href="../static/css/starter-template.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
     <script src="../static/js/process-xml.js"></script>
+    <script src="../static/js/renderBGPController.js"></script>
     <script src="../static/js/checklist-model.js"></script>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 
-<body ng-controller="ProcessXML">
+<body ng-controller="renderBGP">
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="/weeklyreport/templates/report.html">Staples</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,14 +34,14 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Process XML <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link" href="/weeklyreport/templates/ProcessXML.html">Process XML</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/weeklyreport/templates/GenerateReport.html">Generate Report</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/weeklyreport/templates/BGP.html">BGP Report</a>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">BGP Report<span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>
@@ -43,30 +49,13 @@
 <main role="main" class="container-fluid">
 
     <div class="starter-template">
-        <h1>Process XML</h1>
+        <h1>BGP Report</h1>
     </div>
 
-    <div class="container align-items-center col-6">
-        <form id="form" class="align-items-center">
-            <div class="form-group">
-                <label for="bu"><strong>BusinessUnit</strong></label>
-                <select class="form-control" id="bu" ng-model="data.model" ng-change="displayFiles()">
-                    <option ng-repeat="option in data.bu" value="{{option}}">{{option}}</option>
-                </select>
-            </div>
-            <div id="listfiles"  ng-show="showfiles">
-                <h6><strong>List of files to be processed</strong></h6>
-                <div ng-repeat = "file in data.files">{{file}}</div>
-            </div>
-            <div class="form-group row">
-                <div class="col-3">
-                    <button ng-click="submit()" type="submit" class="btn btn-secondary">Process</button>
-                </div>
-                <div class = "col-3">
-                    <button type="reset" ng-click="reset()" class="btn btn-secondary">Reset</button>
-                </div>
-            </div>
-        </form>
+    <div class="container align-items-center">
+        <div ng-bind-html=getHtml(data.tablecontents)>
+        </div>
+
     </div>
 
 </main><!-- /.container -->
