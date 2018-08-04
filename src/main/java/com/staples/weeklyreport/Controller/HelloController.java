@@ -51,6 +51,21 @@ public class HelloController {
         return attributes;
     }
 
+    @RequestMapping(value = "/getInboundReport", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String getInboundReport() {
+        return repoService.getBGPReport().split("</table>")[0];
+    }
+
+    @RequestMapping(value = "/getOutboundReport", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String getOutboundReport() {
+        return repoService.getBGPReport().split("</table>")[1];
+    }
+
+    @RequestMapping(value = "/getBGPPerformanceReport", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String getBGPPerformanceReport() {
+        return repoService.getBGPReport().split("</table>")[2];
+    }
+
     @RequestMapping(value = "/runBGPScript")
     public void runBGPScript() {
         repoService.runBGPScript();

@@ -49,12 +49,56 @@
 <main role="main" class="container-fluid">
 
     <div class="starter-template">
-        <h1>BGP Report</h1>
+        <h1>Reports</h1>
     </div>
 
     <div class="container align-items-center">
-        <div ng-bind-html=getHtml(data.tablecontents)>
-        </div>
+        <form id="form" class="align-items-center">
+
+            <div class="form-group">
+                <input type="checkbox" id="inboundcheckbox" ng-model="data.inboundcheckbox" ng-change="toggleInboundDiv()">
+                <label for="inboundcheckbox"><strong>InboundIntegrationEndPoint</strong></label>
+                <div ng-show="showinbounddiv">
+                    <div class="row">
+                        <label class="col-md-4" for="inbound">Select Inbound Integration End Point</label>
+                        <select class="form-control col-md-3" id="inbound" ng-model="data.inboundselect" ng-change="toggleInboundInnerDiv()">
+                            <option value="ALL">ALL</option>
+                        </select>
+                    </div>
+
+                    <br>
+                    <div ng-show="showinbound">
+                        <div id="inbounddiv" ng-bind-html=getHtml(data.inboundContents)> </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="checkbox" id="outboundcheckbox" ng-model="data.outboundcheckbox" ng-change="toggleOutboundDiv()">
+                <label for="outboundcheckbox"><strong>OutboundIntegrationEndPoint</strong></label>
+                <div ng-show="showoutbounddiv">
+                    <div class="row">
+                        <label class="col-md-4" for="outbound">Select Outbound Integration End Point</label>
+                        <select class="form-control col-md-3" id="outbound" ng-model="data.outboundselect" ng-change="toggleOutboundInnerDiv()">
+                            <option value="ALL">ALL</option>
+                        </select>
+                    </div>
+                    <div ng-show="showoutbound">
+                        <div id="outbounddiv" ng-bind-html=getHtml(data.outboundContents)> </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="checkbox" id="bgpperformance" ng-model="data.bgpcheckbox" ng-change="toggleBgpDiv()">
+                <label for="bgpperformance"><strong>BGP Performance Report</strong></label>
+                <div ng-show="showbgp">
+                    Top 5 BGP process which took more time <br>
+                    <div id="bgpdiv" ng-bind-html=getHtml(data.bgpContents)> </div>
+                </div>
+            </div>
+
+        </form>
 
     </div>
 
